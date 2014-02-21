@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "SettingsData.h"
 
 @interface SettingsViewController ()
 
@@ -14,12 +15,13 @@
 
 @implementation SettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
 		self.title = @"Settings";
+		[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     }
     return self;
 }
@@ -45,16 +47,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2; // general, enabled expressions
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+	return [@[@1, @4][section] integerValue];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,8 +63,29 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+	if (indexPath.section == 0) {
+		cell.textLabel.text = @"Hi";
+	} else if (indexPath.section == 1) {
+		cell.textLabel.text = @[@"Algebraic", @"Polynomials", @"Powers", @"Logarithms"][indexPath.row];
+		cell.accessoryType = [[SettingsData instance] isExpressionTypeEnabled:[SettingsViewController expressionTypeTagForRow:indexPath.row]] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	}
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return @[@"General", @"Enabled Expressions"][section];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		
+	} else if (indexPath.section == 1) {
+		[[SettingsData instance] toggleExpressionTypeEnabled:[SettingsViewController expressionTypeTagForRow:indexPath.row]];
+		[tableView reloadData];
+		[tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+	}
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*
@@ -117,5 +138,11 @@
 }
 
  */
+
+#pragma mark - Private
+
++ (NSString*)expressionTypeTagForRow:(NSInteger)row {
+	return @[@"algebraic", @"polynomial", @"powers", @"logarithms"][row];
+}
 
 @end

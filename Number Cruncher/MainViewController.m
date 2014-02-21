@@ -62,7 +62,7 @@
 }
 
 - (void)onSettingsClicked:(UIButton*)button {
-	SettingsViewController* settings = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	SettingsViewController* settings = [[SettingsViewController alloc] init];
 	[self.navigationController pushViewController:settings animated:YES];
 }
 

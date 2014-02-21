@@ -28,6 +28,7 @@
 		39DD1E0418B7DAB900462083 /* MathExpressionGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0018B7DAB900462083 /* MathExpressionGenerator.m */; };
 		39DD1E0818B7DAEA00462083 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0718B7DAEA00462083 /* MainViewController.m */; };
 		39DD1E0B18B7DBCB00462083 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0A18B7DBCB00462083 /* SettingsViewController.m */; };
+		39DD1E0F18B7E57700462083 /* SettingsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0E18B7E57700462083 /* SettingsData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		39DD1E0718B7DAEA00462083 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		39DD1E0918B7DBCB00462083 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		39DD1E0A18B7DBCB00462083 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		39DD1E0D18B7E57700462083 /* SettingsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsData.h; sourceTree = "<group>"; };
+		39DD1E0E18B7E57700462083 /* SettingsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,7 @@
 		39DD1DCB18B7D9E500462083 /* Number Cruncher */ = {
 			isa = PBXGroup;
 			children = (
+				39DD1E0C18B7E53100462083 /* Misc */,
 				39DD1E0518B7DAD400462083 /* Controllers */,
 				39DD1DF818B7DA6300462083 /* Models */,
 				39DD1DD418B7D9E500462083 /* AppDelegate.h */,
@@ -197,6 +201,15 @@
 				39DD1E0A18B7DBCB00462083 /* SettingsViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		39DD1E0C18B7E53100462083 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				39DD1E0D18B7E57700462083 /* SettingsData.h */,
+				39DD1E0E18B7E57700462083 /* SettingsData.m */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +311,7 @@
 				39DD1DD618B7D9E500462083 /* AppDelegate.m in Sources */,
 				39DD1E0418B7DAB900462083 /* MathExpressionGenerator.m in Sources */,
 				39DD1E0B18B7DBCB00462083 /* SettingsViewController.m in Sources */,
+				39DD1E0F18B7E57700462083 /* SettingsData.m in Sources */,
 				39DD1E0818B7DAEA00462083 /* MainViewController.m in Sources */,
 				39DD1E0118B7DAB900462083 /* ExponentialExpression.m in Sources */,
 				39DD1DD918B7D9E500462083 /* Number_Cruncher.xcdatamodeld in Sources */,
