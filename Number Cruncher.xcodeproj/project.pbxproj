@@ -22,6 +22,11 @@
 		39DD1DE518B7D9E600462083 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DD1DC918B7D9E500462083 /* CoreData.framework */; };
 		39DD1DED18B7D9E600462083 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 39DD1DEB18B7D9E600462083 /* InfoPlist.strings */; };
 		39DD1DEF18B7D9E600462083 /* Number_CruncherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1DEE18B7D9E600462083 /* Number_CruncherTests.m */; };
+		39DD1E0118B7DAB900462083 /* ExponentialExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1DFA18B7DAB900462083 /* ExponentialExpression.m */; };
+		39DD1E0218B7DAB900462083 /* LogarithmExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1DFC18B7DAB900462083 /* LogarithmExpression.m */; };
+		39DD1E0318B7DAB900462083 /* MathExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1DFE18B7DAB900462083 /* MathExpression.m */; };
+		39DD1E0418B7DAB900462083 /* MathExpressionGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0018B7DAB900462083 /* MathExpressionGenerator.m */; };
+		39DD1E0818B7DAEA00462083 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0718B7DAEA00462083 /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,16 @@
 		39DD1DEA18B7D9E600462083 /* Number CruncherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Number CruncherTests-Info.plist"; sourceTree = "<group>"; };
 		39DD1DEC18B7D9E600462083 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		39DD1DEE18B7D9E600462083 /* Number_CruncherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Number_CruncherTests.m; sourceTree = "<group>"; };
+		39DD1DF918B7DAB900462083 /* ExponentialExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExponentialExpression.h; sourceTree = "<group>"; };
+		39DD1DFA18B7DAB900462083 /* ExponentialExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExponentialExpression.m; sourceTree = "<group>"; };
+		39DD1DFB18B7DAB900462083 /* LogarithmExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogarithmExpression.h; sourceTree = "<group>"; };
+		39DD1DFC18B7DAB900462083 /* LogarithmExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogarithmExpression.m; sourceTree = "<group>"; };
+		39DD1DFD18B7DAB900462083 /* MathExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathExpression.h; sourceTree = "<group>"; };
+		39DD1DFE18B7DAB900462083 /* MathExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathExpression.m; sourceTree = "<group>"; };
+		39DD1DFF18B7DAB900462083 /* MathExpressionGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathExpressionGenerator.h; sourceTree = "<group>"; };
+		39DD1E0018B7DAB900462083 /* MathExpressionGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathExpressionGenerator.m; sourceTree = "<group>"; };
+		39DD1E0618B7DAEA00462083 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		39DD1E0718B7DAEA00462083 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +130,8 @@
 		39DD1DCB18B7D9E500462083 /* Number Cruncher */ = {
 			isa = PBXGroup;
 			children = (
+				39DD1E0518B7DAD400462083 /* Controllers */,
+				39DD1DF818B7DA6300462083 /* Models */,
 				39DD1DD418B7D9E500462083 /* AppDelegate.h */,
 				39DD1DD518B7D9E500462083 /* AppDelegate.m */,
 				39DD1DDA18B7D9E500462083 /* Images.xcassets */,
@@ -151,6 +168,30 @@
 				39DD1DEB18B7D9E600462083 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		39DD1DF818B7DA6300462083 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				39DD1DF918B7DAB900462083 /* ExponentialExpression.h */,
+				39DD1DFA18B7DAB900462083 /* ExponentialExpression.m */,
+				39DD1DFB18B7DAB900462083 /* LogarithmExpression.h */,
+				39DD1DFC18B7DAB900462083 /* LogarithmExpression.m */,
+				39DD1DFD18B7DAB900462083 /* MathExpression.h */,
+				39DD1DFE18B7DAB900462083 /* MathExpression.m */,
+				39DD1DFF18B7DAB900462083 /* MathExpressionGenerator.h */,
+				39DD1E0018B7DAB900462083 /* MathExpressionGenerator.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		39DD1E0518B7DAD400462083 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				39DD1E0618B7DAEA00462083 /* MainViewController.h */,
+				39DD1E0718B7DAEA00462083 /* MainViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,9 +289,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39DD1E0218B7DAB900462083 /* LogarithmExpression.m in Sources */,
 				39DD1DD618B7D9E500462083 /* AppDelegate.m in Sources */,
+				39DD1E0418B7DAB900462083 /* MathExpressionGenerator.m in Sources */,
+				39DD1E0818B7DAEA00462083 /* MainViewController.m in Sources */,
+				39DD1E0118B7DAB900462083 /* ExponentialExpression.m in Sources */,
 				39DD1DD918B7D9E500462083 /* Number_Cruncher.xcdatamodeld in Sources */,
 				39DD1DD218B7D9E500462083 /* main.m in Sources */,
+				39DD1E0318B7DAB900462083 /* MathExpression.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
