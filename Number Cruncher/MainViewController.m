@@ -7,18 +7,39 @@
 //
 
 #import "MainViewController.h"
+#import "SettingsViewController.h"
 
 @interface MainViewController ()
+
+@property (nonatomic, strong) UIButton* startButton;
+@property (nonatomic, strong) UIButton* settingsButton;
 
 @end
 
 @implementation MainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
+		self.title = @"Number Cruncher";
+		
+		self.startButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+		[self.startButton addTarget:self action:@selector(onStartClicked:) forControlEvents:UIControlEventTouchUpInside];
+		self.startButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 120 / 2, CGRectGetMidY(self.view.bounds) - 50, 120, 40);
+		[self.startButton setTitle:@"Start" forState:UIControlStateNormal];
+		self.startButton.titleLabel.font = [UIFont systemFontOfSize:32];
+		
+		self.settingsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+		[self.settingsButton addTarget:self action:@selector(onSettingsClicked:) forControlEvents:UIControlEventTouchUpInside];
+		self.settingsButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 120 / 2, CGRectGetMidY(self.view.bounds) + 10, 120, 40);
+		[self.settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
+		self.settingsButton.titleLabel.font = [UIFont systemFontOfSize:32];
+		
+		[self.view addSubview:self.startButton];
+		[self.view addSubview:self.settingsButton];
+	
     }
     return self;
 }
@@ -33,6 +54,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Handlers
+- (void)onStartClicked:(UIButton*)button {
+	
+}
+
+- (void)onSettingsClicked:(UIButton*)button {
+	SettingsViewController* settings = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	[self.navigationController pushViewController:settings animated:YES];
 }
 
 @end
