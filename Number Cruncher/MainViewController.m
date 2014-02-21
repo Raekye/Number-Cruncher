@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "SettingsViewController.h"
+#import "CruncherViewController.h"
 
 @interface MainViewController ()
 
@@ -58,7 +59,8 @@
 
 #pragma mark - Handlers
 - (void)onStartClicked:(UIButton*)button {
-	
+	CruncherViewController* cruncher = [[CruncherViewController alloc] init];
+	[self.navigationController pushViewController:cruncher animated:YES];
 }
 
 - (void)onSettingsClicked:(UIButton*)button {

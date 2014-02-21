@@ -29,6 +29,7 @@
 		39DD1E0818B7DAEA00462083 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0718B7DAEA00462083 /* MainViewController.m */; };
 		39DD1E0B18B7DBCB00462083 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0A18B7DBCB00462083 /* SettingsViewController.m */; };
 		39DD1E0F18B7E57700462083 /* SettingsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0E18B7E57700462083 /* SettingsData.m */; };
+		39DD1E1218B7EC8E00462083 /* CruncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E1118B7EC8E00462083 /* CruncherViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		39DD1E0A18B7DBCB00462083 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		39DD1E0D18B7E57700462083 /* SettingsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsData.h; sourceTree = "<group>"; };
 		39DD1E0E18B7E57700462083 /* SettingsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsData.m; sourceTree = "<group>"; };
+		39DD1E1018B7EC8E00462083 /* CruncherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CruncherViewController.h; sourceTree = "<group>"; };
+		39DD1E1118B7EC8E00462083 /* CruncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CruncherViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 				39DD1E0718B7DAEA00462083 /* MainViewController.m */,
 				39DD1E0918B7DBCB00462083 /* SettingsViewController.h */,
 				39DD1E0A18B7DBCB00462083 /* SettingsViewController.m */,
+				39DD1E1018B7EC8E00462083 /* CruncherViewController.h */,
+				39DD1E1118B7EC8E00462083 /* CruncherViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39DD1E1218B7EC8E00462083 /* CruncherViewController.m in Sources */,
 				39DD1E0218B7DAB900462083 /* LogarithmExpression.m in Sources */,
 				39DD1DD618B7D9E500462083 /* AppDelegate.m in Sources */,
 				39DD1E0418B7DAB900462083 /* MathExpressionGenerator.m in Sources */,

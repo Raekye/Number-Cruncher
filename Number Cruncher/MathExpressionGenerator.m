@@ -11,12 +11,12 @@
 @implementation MathExpressionGenerator
 
 - (MathExpression*)generateSimpleLog10 {
-	uint32_t r = arc4random() % 9 + 1;
+	uint32_t r = arc4random() % 8 + 1;
 	return [[LogarithmExpression alloc] initWithBase:@10 x:[NSNumber numberWithDouble:(double) r]];
 }
 
 - (MathExpression *)generateSimpleExp10 {
-	uint32_t r = arc4random() % 9;
+	uint32_t r = arc4random() % 8 + 1;
 	return [[ExponentialExpression alloc] initWithBase:@10 x:[NSNumber numberWithDouble:(double) r / 10]];
 }
 
