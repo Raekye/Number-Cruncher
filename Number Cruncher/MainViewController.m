@@ -59,7 +59,7 @@
 
 #pragma mark - Handlers
 - (void)onStartClicked:(UIButton*)button {
-	CruncherViewController* cruncher = [[CruncherViewController alloc] init];
+	CruncherViewController* cruncher = [[CruncherViewController alloc] initWithNumberOfExpressions:10];
 	[self.navigationController pushViewController:cruncher animated:YES];
 }
 

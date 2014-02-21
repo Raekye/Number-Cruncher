@@ -8,6 +8,9 @@
 
 #import "CruncherViewController.h"
 #import "MathExpressionGenerator.h"
+#import "ComputationResult.h"
+#import "MathExpression.h"
+#import "ResultsViewController.h"
 
 @interface CruncherViewController ()
 
@@ -16,24 +19,30 @@
 @property (nonatomic, strong) UITextField* inputField;
 @property (nonatomic, strong) UILabel* timeLabel;
 @property (nonatomic, assign) NSInteger ellapsedMilliseconds;
+@property (nonatomic, assign) NSInteger numberOfCompletedExpressions;
+@property (nonatomic, strong) NSMutableArray* results;
+@property (nonatomic, strong) MathExpression* currentExpression;
 
 @end
 
 @implementation CruncherViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNumberOfExpressions:(NSInteger)num
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
 		self.generator = [[MathExpressionGenerator alloc] init];
 		self.ellapsedMilliseconds = 0;
+		self.numberOfExpressions = num;
+		self.results = [NSMutableArray arrayWithCapacity:self.numberOfExpressions];
+		self.currentExpression = [self.generator generateSimpleExp10];
+		self.numberOfCompletedExpressions = 0;
 		
 		self.title = @"Number Cruncher";
 		self.view.backgroundColor = [UIColor whiteColor];
 		
 		self.expressionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, self.view.bounds.size.width, 80)];
-		self.expressionLabel.text = @"1 + 2 + 3 + 4 + 5 + 6";
 		self.expressionLabel.font = [UIFont systemFontOfSize:64];
 		self.expressionLabel.textAlignment = NSTextAlignmentCenter;
 		self.expressionLabel.adjustsFontSizeToFitWidth = YES;
@@ -60,9 +69,7 @@
 		startButton.titleLabel.font = [UIFont systemFontOfSize:32];
 		[startButton addTarget:self action:@selector(onStartPressed:) forControlEvents:UIControlEventTouchUpInside];
 		[startButton sizeToFit];
-		NSLog(@"Start button size: %@", NSStringFromCGRect(startButton.bounds));
 		startButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - CGRectGetMidX(startButton.bounds), 100, startButton.bounds.size.width, startButton.bounds.size.height);
-		NSLog(@"Start button frame: %@", NSStringFromCGRect(startButton.frame));
 		
 //		[self.view addSubview:self.expressionLabel];
 		[self.view addSubview:startButton];
@@ -88,9 +95,20 @@
 
 - (void)onDonePressed:(UIBarButtonItem*)button {
 	//[self.inputField resignFirstResponder];
-	self.expressionLabel.attributedText = [self.generator generateSimpleExp10].formattedString;
+	ComputationResult* result = [[ComputationResult alloc] initWithExpression:self.currentExpression input:self.inputField.text.doubleValue duration:self.ellapsedMilliseconds / 100.0];
+	[self.results addObject:result];
+	self.currentExpression = [self.generator generateSimpleExp10];
+	self.expressionLabel.attributedText = self.currentExpression.formattedString;
 	self.ellapsedMilliseconds = 0;
 	self.inputField.text = nil;
+	self.numberOfCompletedExpressions++;
+	if (self.numberOfCompletedExpressions == self.numberOfExpressions) {
+		ResultsViewController* resultsViewController = [[ResultsViewController alloc] init];
+		resultsViewController.delegate = self;
+		resultsViewController.delegateMethod = @selector(onResultsDismissed);
+		UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:resultsViewController];
+		[self presentViewController:nav animated:YES completion:nil];
+	}
 }
 
 - (void)updateTimer:(NSTimer*)timer {
@@ -103,7 +121,12 @@
 	NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1 / 100.0 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
 	[timer fire];
 	[self.view addSubview:self.expressionLabel];
+	self.expressionLabel.attributedText = self.currentExpression.formattedString;
 	[self.inputField becomeFirstResponder];
+}
+
+- (void)onResultsDismissed {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

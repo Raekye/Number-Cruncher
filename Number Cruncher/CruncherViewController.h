@@ -10,4 +10,7 @@
 
 @interface CruncherViewController : UIViewController
 
+- (id) initWithNumberOfExpressions:(NSInteger)num;
+@property (nonatomic, assign) NSInteger numberOfExpressions;
+
 @end
