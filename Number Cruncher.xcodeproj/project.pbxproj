@@ -31,7 +31,7 @@
 		39DD1E0F18B7E57700462083 /* SettingsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E0E18B7E57700462083 /* SettingsData.m */; };
 		39DD1E1218B7EC8E00462083 /* CruncherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E1118B7EC8E00462083 /* CruncherViewController.m */; };
 		39DD1E1518B807FE00462083 /* ComputationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E1418B807FE00462083 /* ComputationResult.m */; };
-		39DD1E1818B80BE900462083 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E1718B80BE900462083 /* ResultsViewController.m */; };
+		39DD1E1B18B8239700462083 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39DD1E1A18B8239700462083 /* ResultsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +81,8 @@
 		39DD1E1118B7EC8E00462083 /* CruncherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CruncherViewController.m; sourceTree = "<group>"; };
 		39DD1E1318B807FE00462083 /* ComputationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputationResult.h; sourceTree = "<group>"; };
 		39DD1E1418B807FE00462083 /* ComputationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputationResult.m; sourceTree = "<group>"; };
-		39DD1E1618B80BE900462083 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
-		39DD1E1718B80BE900462083 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		39DD1E1918B8239700462083 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		39DD1E1A18B8239700462083 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,8 +212,8 @@
 				39DD1E0A18B7DBCB00462083 /* SettingsViewController.m */,
 				39DD1E1018B7EC8E00462083 /* CruncherViewController.h */,
 				39DD1E1118B7EC8E00462083 /* CruncherViewController.m */,
-				39DD1E1618B80BE900462083 /* ResultsViewController.h */,
-				39DD1E1718B80BE900462083 /* ResultsViewController.m */,
+				39DD1E1918B8239700462083 /* ResultsViewController.h */,
+				39DD1E1A18B8239700462083 /* ResultsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -334,7 +334,7 @@
 				39DD1DD918B7D9E500462083 /* Number_Cruncher.xcdatamodeld in Sources */,
 				39DD1DD218B7D9E500462083 /* main.m in Sources */,
 				39DD1E0318B7DAB900462083 /* MathExpression.m in Sources */,
-				39DD1E1818B80BE900462083 /* ResultsViewController.m in Sources */,
+				39DD1E1B18B8239700462083 /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

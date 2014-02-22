@@ -31,7 +31,7 @@
 
 - (double)accuracy {
 	double realValue = self.expression.realValue.doubleValue;
-	return fabs((realValue - self.input) / realValue);
+	return 1 - fabs((realValue - self.input) / realValue);
 }
 
 @end

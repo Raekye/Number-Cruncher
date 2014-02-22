@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultsViewController : UIViewController
+@interface ResultsViewController : UITableViewController
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, assign) SEL delegateMethod;
+
+- (id)initWithResults:(NSArray*)results;
 
 @end

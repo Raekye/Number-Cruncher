@@ -37,7 +37,7 @@
 
 - (NSAttributedString *)formattedString {
 	NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:self.isBaseE ? @"e" : self.base.stringValue];
-	[str appendAttributedString:[[NSAttributedString alloc] initWithString:self.x.stringValue attributes:@{(__bridge NSString*) kCTSuperscriptAttributeName: @"1", NSFontAttributeName: [UIFont systemFontOfSize:32.0]}]];
+	[str appendAttributedString:[[NSAttributedString alloc] initWithString:self.x.stringValue attributes:@{(__bridge NSString*) kCTSuperscriptAttributeName: @"1", NSFontAttributeName: [UIFont systemFontOfSize:10.0]}]];
 	return [str copy];
 }
 

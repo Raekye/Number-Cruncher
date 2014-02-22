@@ -17,11 +17,13 @@
 @property (nonatomic, strong) MathExpressionGenerator* generator;
 @property (nonatomic, strong) UILabel* expressionLabel;
 @property (nonatomic, strong) UITextField* inputField;
+@property (nonatomic, strong) UIBarButtonItem* doneButton;
 @property (nonatomic, strong) UILabel* timeLabel;
 @property (nonatomic, assign) NSInteger ellapsedMilliseconds;
 @property (nonatomic, assign) NSInteger numberOfCompletedExpressions;
 @property (nonatomic, strong) NSMutableArray* results;
 @property (nonatomic, strong) MathExpression* currentExpression;
+@property (nonatomic, strong) NSTimer* timer;
 
 @end
 
@@ -38,6 +40,7 @@
 		self.results = [NSMutableArray arrayWithCapacity:self.numberOfExpressions];
 		self.currentExpression = [self.generator generateSimpleExp10];
 		self.numberOfCompletedExpressions = 0;
+		self.timer = nil; // TODO: hmmm
 		
 		self.title = @"Number Cruncher";
 		self.view.backgroundColor = [UIColor whiteColor];
@@ -57,8 +60,9 @@
 		
 		UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
 		UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(onDonePressed:)];
-		toolbar.items = @[flexibleSpace, doneButton, flexibleSpace];
+		self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(onDonePressed:)];
+		self.doneButton.enabled = NO;
+		toolbar.items = @[flexibleSpace, self.doneButton, flexibleSpace];
 		[toolbar sizeToFit];
 		[self.inputField setInputAccessoryView:toolbar];
 		
@@ -94,21 +98,22 @@
 #pragma mark - Handlers
 
 - (void)onDonePressed:(UIBarButtonItem*)button {
-	//[self.inputField resignFirstResponder];
 	ComputationResult* result = [[ComputationResult alloc] initWithExpression:self.currentExpression input:self.inputField.text.doubleValue duration:self.ellapsedMilliseconds / 100.0];
 	[self.results addObject:result];
-	self.currentExpression = [self.generator generateSimpleExp10];
-	self.expressionLabel.attributedText = self.currentExpression.formattedString;
-	self.ellapsedMilliseconds = 0;
-	self.inputField.text = nil;
 	self.numberOfCompletedExpressions++;
 	if (self.numberOfCompletedExpressions == self.numberOfExpressions) {
-		ResultsViewController* resultsViewController = [[ResultsViewController alloc] init];
+		[self.timer invalidate];
+		ResultsViewController* resultsViewController = [[ResultsViewController alloc] initWithResults:[self.results copy]];
 		resultsViewController.delegate = self;
 		resultsViewController.delegateMethod = @selector(onResultsDismissed);
 		UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:resultsViewController];
 		[self presentViewController:nav animated:YES completion:nil];
+	} else {
+		self.currentExpression = [self.generator generateSimpleExp10];
+		self.expressionLabel.attributedText = self.currentExpression.formattedString;
 	}
+	self.ellapsedMilliseconds = 0;
+	self.inputField.text = nil;
 }
 
 - (void)updateTimer:(NSTimer*)timer {
@@ -118,11 +123,12 @@
 
 - (void)onStartPressed:(UIButton*)button {
 	[button removeFromSuperview];
-	NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1 / 100.0 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
-	[timer fire];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1 / 100.0 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+	[self.timer fire];
 	[self.view addSubview:self.expressionLabel];
 	self.expressionLabel.attributedText = self.currentExpression.formattedString;
 	[self.inputField becomeFirstResponder];
+	self.doneButton.enabled = YES;
 }
 
 - (void)onResultsDismissed {
