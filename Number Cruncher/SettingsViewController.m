@@ -9,7 +9,10 @@
 #import "SettingsViewController.h"
 #import "SettingsData.h"
 
-@interface SettingsViewController ()
+@interface SettingsViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+
+@property (nonatomic, strong) UITextField* numberOfExpressionsField;
+@property (nonatomic, assign) BOOL numberOfExpressionsIsShowing;
 
 @end
 
@@ -21,7 +24,11 @@
     if (self) {
         // Custom initialization
 		self.title = @"Settings";
-		[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+		//[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+		self.numberOfExpressionsField = [[UITextField alloc] init];
+		self.numberOfExpressionsField.keyboardType = UIKeyboardTypeNumberPad;
+		self.numberOfExpressionsIsShowing = NO;
+		
     }
     return self;
 }
@@ -60,11 +67,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+	}
     
     // Configure the cell...
 	if (indexPath.section == 0) {
-		cell.textLabel.text = @"Hi";
+		if (indexPath.row == 0) {
+			cell.textLabel.text = @"Number of expresssions";
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [SettingsData instance].numberOfExpressions];
+			self.numberOfExpressionsField.textAlignment = NSTextAlignmentRight;
+			self.numberOfExpressionsField.adjustsFontSizeToFitWidth = YES;
+			UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onNumberOfExpressionsDonePressed:)];
+			UIToolbar* toolbar = [[UIToolbar alloc] init];
+			UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+			toolbar.items = @[flexibleSpace, done];
+			[toolbar sizeToFit];
+			self.numberOfExpressionsField.inputAccessoryView = toolbar;
+		}
 	} else if (indexPath.section == 1) {
 		cell.textLabel.text = @[@"Algebraic", @"Polynomials", @"Powers", @"Logarithms"][indexPath.row];
 		cell.accessoryType = [[SettingsData instance] isExpressionTypeEnabled:[SettingsViewController expressionTypeTagForRow:indexPath.row]] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -79,7 +100,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
-		
+		if (indexPath.row == 0) {
+			UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+			if (self.numberOfExpressionsIsShowing) {
+				[self onNumberOfExpressionsDonePressed:nil];
+			} else {
+				self.numberOfExpressionsField.text = cell.detailTextLabel.text;
+				cell.detailTextLabel.hidden = YES;
+				NSInteger textFieldWidth = cell.contentView.bounds.size.width - cell.textLabel.bounds.size.width - 15 * 3;
+				self.numberOfExpressionsField.frame = CGRectMake(15 * 2 + cell.textLabel.bounds.size.width, cell.textLabel.frame.origin.y, textFieldWidth, cell.textLabel.bounds.size.height);
+				[cell.contentView addSubview:self.numberOfExpressionsField];
+//				cell.accessoryView = self.numberOfExpressionsField;
+				[self.numberOfExpressionsField becomeFirstResponder];
+				self.numberOfExpressionsIsShowing = YES;
+			}
+		}
 	} else if (indexPath.section == 1) {
 		[[SettingsData instance] toggleExpressionTypeEnabled:[SettingsViewController expressionTypeTagForRow:indexPath.row]];
 		[tableView reloadData];
@@ -138,6 +173,34 @@
 }
 
  */
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+	return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+	return 50 - 10 + 1;
+}
+
+#pragma mark - UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+	return [NSString stringWithFormat:@"%d", row + 10];
+}
+
+#pragma mark - Handlers
+- (void)onNumberOfExpressionsDonePressed:(UIBarButtonItem*)button {
+	[self.numberOfExpressionsField resignFirstResponder];
+	[self.numberOfExpressionsField removeFromSuperview];
+	//cell.accessoryView = nil;
+	[[SettingsData instance] setNumberOfExpressions:self.numberOfExpressionsField.text.integerValue];
+	UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+	cell.detailTextLabel.hidden = NO;
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [SettingsData instance].numberOfExpressions];
+	self.numberOfExpressionsIsShowing = NO;
+}
 
 #pragma mark - Private
 

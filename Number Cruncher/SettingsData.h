@@ -16,4 +16,7 @@
 - (void)setExpressionType:(NSString*)type enabled:(BOOL)enabled;
 - (void)toggleExpressionTypeEnabled:(NSString*)type;
 
+- (void)setNumberOfExpressions:(NSInteger)num;
+- (NSInteger)numberOfExpressions;
+
 @end

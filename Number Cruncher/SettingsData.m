@@ -49,4 +49,13 @@ static SettingsData* singleton = nil;
 	[self setExpressionType:type enabled:![self isExpressionTypeEnabled:type]];
 }
 
+- (void)setNumberOfExpressions:(NSInteger)num {
+	[self.userSettings setInteger:num forKey:@"number_of_expressions"];
+}
+
+- (NSInteger)numberOfExpressions {
+	NSInteger num = [self.userSettings integerForKey:@"number_of_expressions"];
+	return MIN(MAX(num, 10), 50);
+}
+
 @end
