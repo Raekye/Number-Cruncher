@@ -12,7 +12,8 @@
 
 @property (nonatomic, weak) id delegate;
 @property (nonatomic, assign) SEL delegateMethod;
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 
-- (id)initWithResults:(NSArray*)results;
+- (id)initWithResults:(NSArray*)results managedObjectContext:(NSManagedObjectContext*)managedObjectContext;
 
 @end

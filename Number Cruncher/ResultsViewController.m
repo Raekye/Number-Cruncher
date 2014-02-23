@@ -17,20 +17,19 @@
 
 @implementation ResultsViewController
 
-- (id)initWithResults:(NSArray *)results {
-	self.results = results;
-	return [self initWithStyle:UITableViewStyleGrouped];
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithResults:(NSArray *)results managedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
 		self.title = @"Results";
+		self.results = results;
+		self.managedObjectContext = managedObjectContext;
 		
 		UIBarButtonItem* done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onDoneClicked:)];
 		self.navigationItem.leftBarButtonItems = @[done];
+		
+		[self saveResults];
 		
 		[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
     }
@@ -166,6 +165,23 @@
 		void (*func)(id, SEL) = (void*) imp;
 		func(self.delegate, self.delegateMethod);
 	}];
+}
+
+#pragma mark - Private
+- (void)saveResults {
+	for (ComputationResult* each in self.results) {
+		//NSEntityDescription* entityDescription = [NSEntityDescription entityForName:@"ComputationResult" inManagedObjectContext:self.managedObjectContext];
+		NSManagedObject* managedObject = [NSEntityDescription insertNewObjectForEntityForName:@"ComputationResult" inManagedObjectContext:self.managedObjectContext];
+		[managedObject setValue:@(each.duration) forKey:@"duration"];
+		[managedObject setValue:@(each.accuracy) forKey:@"accuracy"];
+		[managedObject setValue:@(0) forKey:@"difficulty"];
+		[managedObject setValue:each.expression.expressionType forKey:@"expression_type"];
+		NSError* error = nil;
+		if (![self.managedObjectContext save:&error]) {
+			// TODO: handle
+			NSLog(@"Could not save, %@, %@", error, error.userInfo);
+		}
+	}
 }
 
 @end

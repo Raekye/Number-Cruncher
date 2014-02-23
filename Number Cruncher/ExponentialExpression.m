@@ -41,4 +41,8 @@
 	return [str copy];
 }
 
+- (NSString *)expressionType {
+	return @"exponential";
+}
+
 @end

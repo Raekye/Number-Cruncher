@@ -12,5 +12,6 @@
 
 @property (nonatomic, readonly) NSAttributedString* formattedString;
 @property (nonatomic, readonly) NSNumber* realValue;
+@property (nonatomic, readonly) NSString* expressionType;
 
 @end

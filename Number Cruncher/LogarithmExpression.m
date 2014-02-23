@@ -45,4 +45,8 @@
 	return [str copy];
 }
 
+- (NSString*)expressionType {
+	return @"logarithm";
+}
+
 @end

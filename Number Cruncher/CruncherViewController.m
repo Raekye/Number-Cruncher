@@ -103,7 +103,7 @@
 	self.numberOfCompletedExpressions++;
 	if (self.numberOfCompletedExpressions == self.numberOfExpressions) {
 		[self.timer invalidate];
-		ResultsViewController* resultsViewController = [[ResultsViewController alloc] initWithResults:[self.results copy]];
+		ResultsViewController* resultsViewController = [[ResultsViewController alloc] initWithResults:[self.results copy] managedObjectContext:self.managedObjectContext];
 		resultsViewController.delegate = self;
 		resultsViewController.delegateMethod = @selector(onResultsDismissed);
 		UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:resultsViewController];

@@ -13,4 +13,6 @@
 - (id) initWithNumberOfExpressions:(NSInteger)num;
 @property (nonatomic, assign) NSInteger numberOfExpressions;
 
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
+
 @end
