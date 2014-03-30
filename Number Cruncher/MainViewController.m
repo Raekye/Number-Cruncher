@@ -11,6 +11,7 @@
 #import "CruncherViewController.h"
 #import "SettingsData.h"
 #import "StatisticsViewController.h"
+#import "BackgroundView.h"
 
 @interface MainViewController ()
 
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) UIButton* settingsButton;
 @property (nonatomic, strong) UIButton* statisticsButton;
 @property (nonatomic, strong) UIButton* aboutButton;
+@property (nonatomic, strong) UIView * backgroundView;
 
 @end
 
@@ -32,32 +34,58 @@
 		
 		self.startButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		[self.startButton addTarget:self action:@selector(onStartClicked:) forControlEvents:UIControlEventTouchUpInside];
-		self.startButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 240 / 2, CGRectGetMidY(self.view.bounds) - 100, 240, 40);
+		self.startButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 165 / 2, CGRectGetMidY(self.view.bounds) - 100, 165, 40);
+      self.startButton.layer.cornerRadius = 10;
+      self.startButton.backgroundColor = [UIColor colorWithRed: 0.497 green: 0.689 blue: 0.893 alpha: 1];
 		[self.startButton setTitle:@"Start" forState:UIControlStateNormal];
-		self.startButton.titleLabel.font = [UIFont systemFontOfSize:32];
-		
+		self.startButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
+      [self.startButton setTitleColor:[UIColor whiteColor]
+                                forState:UIControlStateNormal];
+      
 		self.settingsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		[self.settingsButton addTarget:self action:@selector(onSettingsClicked:) forControlEvents:UIControlEventTouchUpInside];
-		self.settingsButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 240 / 2, CGRectGetMidY(self.view.bounds) - 40, 240, 40);
+		self.settingsButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 165 / 2, CGRectGetMidY(self.view.bounds) - 40, 165, 40);
+      self.settingsButton.layer.cornerRadius = 10;
+      self.settingsButton.backgroundColor = [UIColor colorWithRed: 0.497 green: 0.689 blue: 0.893 alpha: 1];
 		[self.settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
-		self.settingsButton.titleLabel.font = [UIFont systemFontOfSize:32];
-		
+		self.settingsButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
+      [self.settingsButton setTitleColor:[UIColor whiteColor]
+                             forState:UIControlStateNormal];
+      
 		self.statisticsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		[self.statisticsButton addTarget:self action:@selector(onStatisticsClicked:) forControlEvents:UIControlEventTouchUpInside];
-		self.statisticsButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 240 / 2, CGRectGetMidY(self.view.bounds) + 20, 240, 40);
+		self.statisticsButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 165 / 2, CGRectGetMidY(self.view.bounds) + 20, 165, 40);
 		[self.statisticsButton setTitle:@"Statistics" forState:UIControlStateNormal];
-		self.statisticsButton.titleLabel.font = [UIFont systemFontOfSize:32];
+      self.statisticsButton.layer.cornerRadius = 10;
+      self.statisticsButton.backgroundColor = [UIColor colorWithRed: 0.497 green: 0.689 blue: 0.893 alpha: 1];
+		self.statisticsButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
+      [self.statisticsButton setTitleColor:[UIColor whiteColor]
+                                  forState:UIControlStateNormal];
 		
 		self.aboutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 		[self.aboutButton addTarget:self action:@selector(onAboutClicked:) forControlEvents:UIControlEventTouchUpInside];
-		self.aboutButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 240 / 2, CGRectGetMidY(self.view.bounds) + 80, 240, 40);
+		self.aboutButton.frame = CGRectMake(CGRectGetMidX(self.view.bounds) - 165 / 2, CGRectGetMidY(self.view.bounds) + 80, 165, 40);
+      self.aboutButton.layer.cornerRadius = 10;
+      self.aboutButton.backgroundColor = [UIColor colorWithRed: 0.497 green: 0.689 blue: 0.893 alpha: 1];
 		[self.aboutButton setTitle:@"About" forState:UIControlStateNormal];
-		self.aboutButton.titleLabel.font = [UIFont systemFontOfSize:32];
-		
+		self.aboutButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
+      [self.aboutButton setTitleColor:[UIColor whiteColor]
+                             forState:UIControlStateNormal];
+
+      CGRect screenRect = [[UIScreen mainScreen] bounds];
+      CGFloat screenWidth = screenRect.size.width;
+      CGFloat screenHeight = screenRect.size.height;
+    self.backgroundView = [[BackgroundView alloc] init];
+      self.backgroundView.frame = CGRectMake(screenWidth-74, screenHeight-98, 64, 88);
+    [self.view addSubview:self.backgroundView];
+      
 		[self.view addSubview:self.startButton];
 		[self.view addSubview:self.settingsButton];
 		[self.view addSubview:self.statisticsButton];
 		[self.view addSubview:self.aboutButton];
+      
+      [self.view setBackgroundColor:[UIColor colorWithRed: 0.16 green: 0.367 blue: 0.573 alpha: 1]];
+      
     }
     return self;
 }
