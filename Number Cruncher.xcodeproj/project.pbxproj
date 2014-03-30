@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02AD010A18E7F10A00E3D112 /* BackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AD010918E7F10A00E3D112 /* BackgroundView.m */; };
 		39DD1DC418B7D9E500462083 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DD1DC318B7D9E500462083 /* Foundation.framework */; };
 		39DD1DC618B7D9E500462083 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DD1DC518B7D9E500462083 /* CoreGraphics.framework */; };
 		39DD1DC818B7D9E500462083 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DD1DC718B7D9E500462083 /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02AD010818E7F10A00E3D112 /* BackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundView.h; sourceTree = "<group>"; };
+		02AD010918E7F10A00E3D112 /* BackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundView.m; sourceTree = "<group>"; };
 		0DE91EEB87C247A4B6E5E8F5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		39DD1DC018B7D9E500462083 /* Number Cruncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Number Cruncher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DD1DC318B7D9E500462083 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -118,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02AD010718E7F0F800E3D112 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02AD010818E7F10A00E3D112 /* BackgroundView.h */,
+				02AD010918E7F10A00E3D112 /* BackgroundView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		39DD1DB718B7D9E500462083 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +166,7 @@
 		39DD1DCB18B7D9E500462083 /* Number Cruncher */ = {
 			isa = PBXGroup;
 			children = (
+				02AD010718E7F0F800E3D112 /* Views */,
 				39DD1E0C18B7E53100462083 /* Misc */,
 				39DD1E0518B7DAD400462083 /* Controllers */,
 				39DD1DF818B7DA6300462083 /* Models */,
@@ -373,6 +386,7 @@
 				39DD1DD618B7D9E500462083 /* AppDelegate.m in Sources */,
 				39DD1E1E18BA51A000462083 /* StatisticsViewController.m in Sources */,
 				39DD1E0418B7DAB900462083 /* MathExpressionGenerator.m in Sources */,
+				02AD010A18E7F10A00E3D112 /* BackgroundView.m in Sources */,
 				39DD1E0B18B7DBCB00462083 /* SettingsViewController.m in Sources */,
 				39DD1E0F18B7E57700462083 /* SettingsData.m in Sources */,
 				39DD1E0818B7DAEA00462083 /* MainViewController.m in Sources */,
